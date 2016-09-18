@@ -46,5 +46,13 @@ The starter-kit skeleton has the following file structure:
         (shows an individual message)
 ```
 
+##1. Login Screen
+Firstly we will create a very simple login screen where the user can enter their name and press a submit button to enter the chat room.
 
+First, let's start with the render method inside App.js.
+```
+  render() {
+  
+
+```
 
