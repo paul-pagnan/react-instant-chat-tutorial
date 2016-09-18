@@ -97,7 +97,8 @@ These two event handlers are as follows:
   }
 ```
 
-Now that we have created our event handlers and have set our state correctly, we can re-render the view to show the main chat room. In our render method, we should check the 'submitted' property inside the state and render the chat room if this is 'true'. Thus, we should add this to the start of our render method.
+
+Now that we have created our event handlers and have set our state correctly, we can re-render the view to show the main chat room. In our render method, we should check the 'submitted' property inside the state and render the chat room if this is 'true'. Thus, we should add the following to the start of our render method:
 
 ```
 render() {
@@ -109,3 +110,26 @@ render() {
     }
   ...
 ```
+
+Your final App.js file should look like the one located [here](https://github.com/kentandlime/react-instant-chat/blob/master/src/components/App.js)
+
+
+## 2. Main App Screen
+Now that we have allowed the user to enter the chat room, we want to display the main application. The main application consists of two main components, the user input section and the messages section.
+Again, let's start with the render method. 
+
+```
+ render() {
+    return (
+      <div className="container">
+        <h3>React Chat App</h3>
+        <Messages messages={this.state.messages} />
+        <ChatInput onSend={this.sendHandler} />
+      </div>
+    );
+  }
+```
+
+By looking at this we can deduce two things. 
+- 1) The Message component should take an array of messages. Thus, we must build a way to put the messages into the state (we will do this later)
+- 2) The ChatInput emits an onSend event. As a result, we should create an event handler that takes this event, adds the message to the state and sends it to the server
