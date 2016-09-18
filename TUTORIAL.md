@@ -210,7 +210,27 @@ Now that we have created the Messages view to loop through all the messages, we 
 Notice that we are using the ```fromMe`` property to conditionally add a CSS class to the container of the message.
 
 ## 5. The Chat Input
+The chat input component is displayed underneath the message list, and allows the user to enter a message to be send to the server. The component is a simple form with a single text input field. When the user presses enter, the input box should clear and it should emit an event to the parent component. 
 
+As always, let's start with the render method
+
+```
+ render() {
+    return (
+      <form className="chat-input" onSubmit={this.submitHandler}>
+        <input type="text"
+          onChange={this.textChangeHandler}
+          value={this.state.chatInput}
+          placeholder="Write a message..."
+          required />
+      </form>
+    );
+  }
+```
+
+The render method here is simple. We create a form, and an input. When the form is submitted (by the user pressing enter inside the input box) the submitHandler is called. When we enter changes into the input box, the textChangeHandler is called and the value of this.state.chatInput is bound to the input box so that we can clear the input box after it is submitted. Let's look at these event handlers:
+
+1) 
 
 
 ## 6. Tying it all together
