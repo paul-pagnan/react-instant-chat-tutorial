@@ -49,10 +49,50 @@ The starter-kit skeleton has the following file structure:
 ##1. Login Screen
 Firstly we will create a very simple login screen where the user can enter their name and press a submit button to enter the chat room.
 
-First, let's start with the render method inside App.js.
+First, let's start with the render method inside App.js. We will first start by rendering a simple login form
 ```
   render() {
-  
-
+    return (
+      <form onSubmit={this.usernameSubmitHandler} className="username-container">
+        <h1>React Instant Chat</h1>
+        <div>
+          <input
+            type="text"
+            onChange={this.usernameChangeHandler}
+            placeholder="Enter a username..."
+            required />
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
 ```
 
+Notice that we reference two event handlers here. One for the onChange event on the input box and one on the onSubmit event of the form.
+When the user enters some data, we want to store this in the component state so that we can retrieve it later when they submit. When the user submits the form, we simply want to set a boolean flag in the state so that we can re-render the page accordingly.
+
+These two event handlers are as follows:
+
+``` 
+  usernameChangeHandler(event) {
+    this.setState({ username: event.target.value });
+  }
+
+  usernameSubmitHandler(event) {
+    event.preventDefault();
+    this.setState({ submitted: true, username: this.state.username });
+  }
+```
+
+> **NOTE:** ReactJs does not automatically bind the 'this' keyword to event handlers. Thus, if we want to call any method on 'this' (in this example we call this.setState) we need to first bind the 'this' keyword to the method in the class constructor. We do that in the constructor as follows:
+```
+ constructor(props) {
+    super(props);
+    // set the initial state of the application
+    this.state = { username: '' };
+
+    // bind the 'this' keyword to the event handlers
+    this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
+    this.usernameSubmitHandler = this.usernameSubmitHandler.bind(this);
+  }
+```
