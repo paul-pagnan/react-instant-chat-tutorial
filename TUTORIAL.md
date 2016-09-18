@@ -10,6 +10,8 @@ This tutorial will guide the reader through the development of a simple instant 
 If you are just after the finished, commented, source code then checkout the github repo here:
 [react-instant-chat](https://github.com/kentandlime/react-instant-chat)
 
+The finished product looks like this:
+
 
 ##Getting started
 To get started, I recommend downloading the starter kit for this tutorial. It contains a skeleton version of the app so that you don't have to do any of the boring dev-ops stuff to get started. The starter kit also contains all of the stylesheets that we will be using for this tutorial. You can download the starter kit here: [react-instant-chat-starter-kit](https://github.com/kentandlime/react-instant-chat-starter-kit/).
@@ -26,10 +28,22 @@ I have also created a simple chat API that we will be connecting to from our Rea
   5. run 'npm start'
 ```
 
+## The File Structure
 The starter-kit skeleton has the following file structure:
 ```
   - src
     - components
-      -
+      - App.js
+        (we will show a simple login screen here)
+      - ChatApp.js
+        (this is where the main app is shown)
+      - ChatInput.js
+        (the input box where the user enters their message)
+      - Messages.js
+        (shows a list of the messages which have been sent and received)
+      - Message.js
+        (shows an individual message)
 ```
+
+
 
