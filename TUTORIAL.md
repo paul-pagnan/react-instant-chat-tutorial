@@ -187,3 +187,30 @@ To scroll the messages view we can use some simple javascript, as follows:
 
 Your final Messages component should look like the one [here](https://github.com/kentandlime/react-instant-chat/blob/master/src/components/Messages.js)
 
+## 4. The Message
+Now that we have created the Messages view to loop through all the messages, we need a way to display a single message. We create a very simple component called Message that displays the contents of the properties that we passed in through the Messages component. The render method should be as follows:
+```
+ render() {
+    // Was the message sent by the current user. If so, add a css class
+    const fromMe = this.props.fromMe ? 'from-me' : '';
+
+    return (
+      <div className={`message ${fromMe}`}>
+        <div className='username'>
+          { this.props.username }
+        </div>
+        <div className='message-body'>
+          { this.props.message }
+        </div>
+      </div>
+    );
+  }
+```
+
+Notice that we are using the ```fromMe`` property to conditionally add a CSS class to the container of the message.
+
+## 5. The Chat Input
+
+
+
+## 6. Tying it all together
