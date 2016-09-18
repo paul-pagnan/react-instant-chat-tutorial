@@ -11,7 +11,7 @@ If you are just after the finished, commented, source code then checkout the git
 [react-instant-chat](https://github.com/kentandlime/react-instant-chat)
 
 The finished product looks like this:
-![Finished react chat app](https://s14.postimg.io/mfyt4d0w1/20160918_122313_capture.gif)
+![Finished react chat app](https://s17.postimg.org/40klqu39r/20160918_123011_capture.gif)
 
 
 ##Getting started
