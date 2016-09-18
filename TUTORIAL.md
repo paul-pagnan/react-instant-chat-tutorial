@@ -133,3 +133,57 @@ Again, let's start with the render method.
 By looking at this we can deduce two things. 
 - 1) The Message component should take an array of messages. Thus, we must build a way to put the messages into the state (we will do this later)
 - 2) The ChatInput emits an onSend event. As a result, we should create an event handler that takes this event, adds the message to the state and sends it to the server
+
+We will deal with these things later. First let's create the Messages and ChatInput components.
+
+## 3. Messages View
+The message view will accept an array of message objects through the properties of the component. We pass the array in through the properties (as seen in the ChatApp render method) and access them inside the Messages component through ```this.props.messages```.
+
+Essentially, the purpose of the Messages component is to loop through each Message and create a single Message component. The Message component will display the actual message.
+So, the render method should be as follows:
+
+```
+render() {
+    // Loop through all the messages in the state and create a Message component
+    const messages = this.props.messages.map((message, i) => {
+        return (
+          <Message
+            key={i}
+            username={message.username}
+            message={message.message}
+            fromMe={message.fromMe} />
+        );
+      });
+
+    return (
+      <div className='messages' id='messageList'>
+        { messages }
+      </div>
+    );
+  }
+}
+
+```
+
+Let's analyse what this method is doing. First start by getting the array of messages from the properties, then we loop through it using the map function. Map is a new ES6 array function that you can read more about [here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map). For each message in the array, we create a Message component. The message component accepts three properties.
+- 1) key - the key is a React prop which tells the renderer the index of the current component in the loop. Remember that React's render engine only renders the changes by uses a diff system. Thus, the key property is a way for React to determine which component it needs to re-render based on which element in the array has changed.
+- 2) username - the name of the user who sent the message
+- 3) message - the actual body of the message
+- 4) fromMe - a boolean that defines if the message was sent from the current user (we show different styles based on this i.e. right or left side of the screen)
+
+We store the result of this loop inside a local variable to keep our code clean. 
+Next, we wrap this variable in a div container and return it.
+
+
+Finally, the messages component should automatically scroll to the bottom when a new message is received. We can achieve this behaviour by using a React component lifecycle method called ```componentDidUpdate()```. As you probably guessed, this method is called when the props of the component changed. There are a number of lifecycle methods available to us which you can find more about [here](https://facebook.github.io/react/docs/component-specs.html).
+To scroll the messages view we can use some simple javascript, as follows:
+```
+  componentDidUpdate() {
+    // get the messagelist container and set the scrollTop to the height of the container
+    const objDiv = document.getElementById('messageList');
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }
+```
+
+Your final Messages component should look like the one [here](https://github.com/kentandlime/react-instant-chat/blob/master/src/components/Messages.js)
+
