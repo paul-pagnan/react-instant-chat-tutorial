@@ -97,5 +97,15 @@ These two event handlers are as follows:
   }
 ```
 
+Now that we have created our event handlers and have set our state correctly, we can re-render the view to show the main chat room. In our render method, we should check the 'submitted' property inside the state and render the chat room if this is 'true'. Thus, we should add this to the start of our render method.
 
-
+```
+render() {
+  if (this.state.submitted) {
+      // Form was submitted, now show the main App
+      return (
+        <ChatApp username={this.state.username} />
+      );
+    }
+  ...
+```
