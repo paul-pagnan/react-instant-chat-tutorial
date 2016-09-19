@@ -93,7 +93,7 @@ These two event handlers are as follows:
   }
 ```
 
-> **NOTE:** ReactJs does not automatically bind the 'this' keyword to event handlers. Thus, if we want to call any method on 'this' (in this example we call this.setState) we need to first bind the 'this' keyword to the method in the class constructor. We do that in the constructor as follows:
+> **NOTE:** ReactJs does not automatically bind the 'this' keyword to event handlers. Thus, if we want to call any method on 'this' (in this example we call this.setState) we need to first bind the 'this' keyword to the method in the component constructor.
 ```
  constructor(props) {
     super(props);
