@@ -275,8 +275,86 @@ Your final component should look like the one [here](https://github.com/kentandl
 
 ## 6. Tying it all together
 Now comes the exciting part, tying it all together and making it work!
+
 The last thing left to do is to connect the chat api to our App. 
 
 > *NOTE:* Make sure that you have [simple-chat-api](https://github.com/kentandlime/simple-chat-api) running at this stage. To get it running, download it and read the instructions in the README of the [repo](https://github.com/kentandlime/simple-chat-api)
 
+I also recommend checking out how socket.IO works before continuing, it's very simple. Learn more [here](http://socket.io/)
 
+We do all of the communication with the server from within the ```ChatApp``` component. Firstly, we need to connect to our socket.io server. In the constructor of ```ChatApp``` we should add the following:
+
+```
+constructor(props) {
+    super(props);
+    // set the initial state of messages so that it is not undefined on load
+    this.state = { messages: [] };
+        
+    // Connect to the server
+    this.socket = io(config.api).connect();
+    ...
+```
+
+This line of code is initialising the socket.IO library by passing in the address of the server. We define the address of the server inside a config file so that we can change it easily if we need to (the config file is located in src/config/index.js).
+
+Next, we should create the ```onSend``` handler to send the message to the server when the user sends a message. Remember earlier when we emitted the ```onSend``` from inside the ChatInput component. This is the part where we define what that onSend event actually does. Inside ChatApp we should define the following function:
+
+```
+  sendHandler(message) {
+    const messageObject = {
+      username: this.props.username,
+      message
+    };
+
+    // Emit the message to the server
+    this.socket.emit('client:message', messageObject);
+
+    messageObject.fromMe = true;
+    this.addMessage(messageObject);
+  }
+  
+  // Remember that we bound this function in step 2 of this tutorial
+  // You will see this in the render method of ChatApp.js <ChatInput onSend={this.sendHandler} />
+```
+
+Let's break this method down.
+1) We create a messageObject that we can easily reuse. The object contains the username and the actual message which was passed up from the ChatInput component through the parameters of the function (remember when we called this.props.onSend(this.state.chatInput) from the child component).
+2) Next, we actually send the message. Through the magic of socket.io, this line of code will actually send the message to the server. So easy and simple, right!?
+3) The current user is sending the message, so we want to add the ```fromMe``` flag so that our message is displayed correctly on the right in the messages view.
+4) We call the addMessage function to append our method to the state. 
+
+> **NOTE**: Remember to bind `this` to the sendHandler.
+
+Let's define the addMessage function now:
+```
+  addMessage(message) {
+    // Append the message to the component state
+    const messages = this.state.messages;
+    messages.push(message);
+    this.setState({ messages });
+  }
+```
+
+This is a very simple function that takes the message object and appends it to the state.
+
+Now that the state is updated, the render method of ChatApp is automatically run again and the new message is passed into the Messages component to be displayed. Remember this line in the render method ``` <Messages messages={this.state.messages} />```.
+
+The very last step is to define what happens when we receive a message from the server, we want to add it to the state as well, right?
+Let's do that now. Add this to the bottom of the constructor inside ChatApp:
+
+```
+  constructor(props) {
+    ...
+    
+    // Listen for messages from the server
+    this.socket.on('server:message', message => {
+      this.addMessage(message);
+    });
+  }
+```
+
+Through the magic of socket.io, this callback will be run every time a message is received from another person in the chat room. When we recieve a message, all we need to do is add it to the state by calling the ```addMessage``` function that we defined earlier.
+
+
+:tada: :tada: :tada: :tada:
+Congratulations, you have succesfully completed a React instant chat application. Happy chatting!
