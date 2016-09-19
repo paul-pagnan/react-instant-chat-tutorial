@@ -357,4 +357,5 @@ Through the magic of socket.io, this callback will be run every time a message i
 
 
 :tada: :tada: :tada: :tada:
+
 Congratulations, you have succesfully completed a React instant chat application. Happy chatting!
