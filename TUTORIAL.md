@@ -274,3 +274,9 @@ Lastly, we need to bind ```this``` to our event handlers as we did before. We sh
 Your final component should look like the one [here](https://github.com/kentandlime/react-instant-chat/blob/master/src/components/ChatInput.js)
 
 ## 6. Tying it all together
+Now comes the exciting part, tying it all together and making it work!
+The last thing left to do is to connect the chat api to our App. 
+
+> *NOTE:* Make sure that you have [simple-chat-api](https://github.com/kentandlime/simple-chat-api) running at this stage. To get it running, download it and read the instructions in the README of the [repo](https://github.com/kentandlime/simple-chat-api)
+
+
