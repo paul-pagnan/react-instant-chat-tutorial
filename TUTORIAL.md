@@ -69,6 +69,7 @@ First, let's start with the render method inside App.js. We will first start by 
 ```
 
 Notice that we reference two event handlers here. One for the onChange event on the input box and one on the onSubmit event of the form.
+
 When the user enters some data, we want to store this in the component state so that we can retrieve it later when they submit. When the user submits the form, we simply want to set a boolean flag in the state so that we can re-render the page accordingly.
 
 These two event handlers are as follows:
@@ -327,10 +328,10 @@ Next, we should create the ```onSend``` handler to send the message to the serve
 ```
 
 Let's break this method down.
-1) We create a messageObject that we can easily reuse. The object contains the username and the actual message which was passed up from the ChatInput component through the parameters of the function (remember when we called this.props.onSend(this.state.chatInput) from the child component).
-2) Next, we actually send the message. Through the magic of socket.io, this line of code will send the message to the server. So easy and simple, right!?
-3) The current user is sending the message, so we want to add the ```fromMe``` flag so that our message is displayed correctly on the right in the messages view.
-4) We call the addMessage function to append our method to the state. 
+- 1) We create a messageObject that we can easily reuse. The object contains the username and the actual message which was passed up from the ChatInput component through the parameters of the function (remember when we called this.props.onSend(this.state.chatInput) from the child component).
+- 2) Next, we actually send the message. Through the magic of socket.io, this line of code will send the message to the server. So easy and simple, right!?
+- 3) The current user is sending the message, so we want to add the ```fromMe``` flag so that our message is displayed correctly on the right in the messages view.
+- 4) We call the addMessage function to append our method to the state. 
 
 > **NOTE**: Remember to bind `this` to the sendHandler.
 
