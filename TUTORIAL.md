@@ -361,6 +361,8 @@ Let's do that now. Add this to the bottom of the constructor inside ChatApp:
 Through the magic of socket.io, this callback will be run every time a message is received from another person in the chat room. When we receive a message, all we need to do is add it to the state by calling the ```addMessage``` function that we defined earlier.
 
 
+Your final ChatApp.js file should look like the one located [here](https://github.com/kentandlime/react-instant-chat/blob/master/src/components/ChatApp.js)
+
 
 :tada: :tada: :tada: :tada:
 
