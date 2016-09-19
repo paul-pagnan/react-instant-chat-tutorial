@@ -1,13 +1,13 @@
 #Building an instant chat app using ReactJs and Socket.io
 ##Introduction
-ReactJs is one of the most popular technologies on the web today due to it's simplicity and speed. It is important to note that ReactJS is not a framework, it is a library, thus it is unfair to compare it to other technologies such as AngularJs or Ember. Web frameworks, such as AngularJs, provide the developer with most tools they need to develop a comprehensive front-end app such as pre-built functions for routing, form validation, http service requests and many more. However, the ReactJs library purely focuses on the view layer and leaves the other complexities for developer to manage. This gives the developer much more control over how the various features are implemented.
+ReactJs is one of the most popular technologies on the web today due to its simplicity and speed. It is important to note that ReactJS is not a framework, it is a library. Thus, it is unfair to compare it to other technologies such as AngularJs or Ember. Web frameworks, such as AngularJs, provide the developer with most tools they need to develop a comprehensive front-end app such as pre-built functions for routing, form validation, http service requests and much more. However, the ReactJs library purely focuses on the view layer and leaves the other complexities for the developer to manage. This gives the developer much more control over how the various features are implemented.
 
 This tutorial will guide the reader through the development of a simple instant chat application, similar to Facebook Messenger, built using ReactJs and Socket.io. This tutorial assumes that you already have a basic understanding of the ReactJs framework and ES6 syntax. If you know nothing about these two, I suggest you stop reading here and check out the following articles:
   - [Learning React.js: Getting Started and Concepts](https://scotch.io/tutorials/learning-react-getting-started-and-concepts)
   - [Learn ES2015 (ES6)](https://babeljs.io/docs/learn-es2015/)
 
 ###TL;DR
-If you are just after the finished, commented, source code then checkout the github repo here:
+If you are just after the finished, commented, source code then checkout the Github repo here:
 [react-instant-chat](https://github.com/kentandlime/react-instant-chat)
 
 The finished product looks like this:
@@ -15,7 +15,7 @@ The finished product looks like this:
 
 
 ##Getting started
-To get started, I recommend downloading the starter kit for this tutorial. It contains a skeleton version of the app so that you don't have to do any of the boring dev-ops stuff to get started. The starter kit also contains all of the stylesheets that we will be using for this tutorial. You can download the starter kit here: [react-instant-chat-starter-kit](https://github.com/kentandlime/react-instant-chat-starter-kit/).
+To get started, I recommend downloading the starter kit for this tutorial. It contains a skeleton version of the app so that you don't have to do any of the boring dev-ops stuff to get started. The starter kit also includes all of the stylesheets that we will be using for this tutorial. You can download the starter kit here: [react-instant-chat-starter-kit](https://github.com/kentandlime/react-instant-chat-starter-kit/).
 
 Once you have downloaded it, make sure to install the npm dependencies correctly by running: ``` npm install ```.
 Once that completes successfully, you can run ``` npm start ``` to start the server
@@ -131,10 +131,10 @@ Again, let's start with the render method.
 ```
 
 By looking at this we can deduce two things. 
-- 1) The Message component should take an array of messages. Thus, we must build a way to put the messages into the state (we will do this later)
+- 1) The Message component should take an array of messages. Thus, we must build a way to put these messages into the state (we will do this later)
 - 2) The ChatInput emits an onSend event. As a result, we should create an event handler that takes this event, adds the message to the state and sends it to the server
 
-We will deal with these things later. First let's create the Messages and ChatInput components.
+We will deal with these things later. First, let's create the Messages and ChatInput components.
 
 ## 3. Messages View
 The message view will accept an array of message objects through the properties of the component. We pass the array in through the properties (as seen in the ChatApp render method) and access them inside the Messages component through ```this.props.messages```.
@@ -175,7 +175,7 @@ We store the result of this loop inside a local variable to keep our code clean.
 Next, we wrap this variable in a div container and return it.
 
 
-Finally, the messages component should automatically scroll to the bottom when a new message is received. We can achieve this behaviour by using a React component lifecycle method called ```componentDidUpdate()```. As you probably guessed, this method is called when the props of the component changed. There are a number of lifecycle methods available to us which you can find more about [here](https://facebook.github.io/react/docs/component-specs.html).
+Finally, the messages component should automatically scroll to the bottom when a new message is received. We can achieve this behaviour by using a React component lifecycle method called ```componentDidUpdate()```. As you probably guessed, this method is called when the props of the component changed. There are many different lifecycle methods available to us; you can find out more about these [here](https://facebook.github.io/react/docs/component-specs.html).
 To scroll the messages view we can use some simple javascript, as follows:
 ```
   componentDidUpdate() {
@@ -210,7 +210,7 @@ Now that we have created the Messages view to loop through all the messages, we 
 Notice that we are using the ```fromMe``` property to conditionally add a CSS class to the container of the message.
 
 ## 5. The Chat Input
-The chat input component is displayed underneath the message list, and allows the user to enter a message to be send to the server. The component is a simple form with a single text input field. When the user presses enter, the input box should clear and it should emit an event to the parent component. 
+The chat input component is displayed underneath the message list and allows the user to enter a message to be sent to the server. The component is a simple form with a single text input field. When the user presses enter, the input box should be cleared and it should emit an event to the parent component. 
 
 As always, let's start with the render method
 
@@ -228,10 +228,10 @@ As always, let's start with the render method
   }
 ```
 
-The render method here is simple. We create a form, and an input. When the form is submitted (by the user pressing enter inside the input box) the submitHandler is called. When we enter changes into the input box, the textChangeHandler is called and the value of this.state.chatInput is bound to the input box so that we can clear the input box after it is submitted. Let's look at these event handlers:
+The render method here is simple. We create a form and an input field. When the form is submitted (by the user pressing enter inside the input box) the submitHandler is called. When we modify the text in the input field, the textChangeHandler is called and the value of this.state.chatInput is bound to the input box. We bind this value back to the input field so that we can easily clear the field after the form is submitted. Let's look at these event handlers:
 
 #### 1) Text change handler
-The text change handler should take the input from the text box and put it in the component state so that we can use it later when the user submits the form. The handler should look like this:
+The text change handler should take the input from the text box and put it in the component state so that we can use this value later. The handler should look like this:
 ```
   textChangeHandler(event)  {
     this.setState({ chatInput: event.target.value });
@@ -253,12 +253,16 @@ The submit handler should clear the current message from the input field and sho
   }
 ```
 Let's analyse this method in detail.
-Firstly, ```event.preventDefault()``` prevents the native HTML form from refreshing the page when it is submitted. 
-Secondly, we emit an event to the parent component. You will notice that in the parent component (ChatApp.js) we pass in a property called ```onSend```. In this case, the onSend property is a function. The actual onSend function lives inside the parent component and we are passing a reference of that function to the child. The child is able to call this function reference and it will run whatever code is defined in the parent. Here we pass in the value of chatInput. This function does not exist currently, but we will create it in part 6.
-Lastly, once we have emitted the event to the parent, we can clear the user's input. We do this by simple setting the chatInput inside the state to '' (remember in the render method we bound ```this.state.chatInput``` to the ```value``` property of the ```<input />``` field, this allows us to update the value of the field simply by setting the state field that is bound to it).
+
+Firstly, ```event.preventDefault()``` prevents the native HTML form from refreshing the page when it is submitted.
+
+Secondly, we emit an event to the parent component with the value of ```chatInput```. You will notice that in the parent component (ChatApp.js) we pass in a property called ```onSend``` to the ChatInput component. In this case, the onSend property is a function. The actual onSend function lives inside the parent component and we are passing a reference of that function to the child through the props. The child is able to call this function reference and it will run whatever code is defined in the parent. This function does not exist currently, but we will create it in part 6.
+
+Lastly, once we have emitted the event to the parent, we want to clear the user's input. We do this by simple setting the chatInput inside the state to '' (remember in the render method we bound ```this.state.chatInput``` to the ```value``` of the ```<input />``` field. This allows us to update the value of the field simply by setting the state field that is bound to it).
 
 
-Lastly, we need to bind ```this``` to our event handlers as we did before. We should also set an initial state of chatInput so that it is not undefined when the component is loaded.
+As we did before, we need to bind ```this``` to our event handlers. We should also set an initial state of chatInput so that it is not undefined when the component is loaded.
+
 ```
   constructor(props) {
     super(props);
@@ -272,6 +276,7 @@ Lastly, we need to bind ```this``` to our event handlers as we did before. We sh
 ```
 
 Your final component should look like the one [here](https://github.com/kentandlime/react-instant-chat/blob/master/src/components/ChatInput.js)
+
 
 ## 6. Tying it all together
 Now comes the exciting part, tying it all together and making it work!
@@ -297,7 +302,7 @@ constructor(props) {
 
 This line of code is initialising the socket.IO library by passing in the address of the server. We define the address of the server inside a config file so that we can change it easily if we need to (the config file is located in src/config/index.js).
 
-Next, we should create the ```onSend``` handler to send the message to the server when the user sends a message. Remember earlier when we emitted the ```onSend``` from inside the ChatInput component. This is the part where we define what that onSend event actually does. Inside ChatApp we should define the following function:
+Next, we should create the ```onSend``` handler to send the message to the server when the user sends a message. Remember earlier when we emitted the ```onSend``` from inside the ChatInput component. Here is where we define what that onSend event actually does. Inside ChatApp we should define the following function:
 
 ```
   sendHandler(message) {
@@ -319,7 +324,7 @@ Next, we should create the ```onSend``` handler to send the message to the serve
 
 Let's break this method down.
 1) We create a messageObject that we can easily reuse. The object contains the username and the actual message which was passed up from the ChatInput component through the parameters of the function (remember when we called this.props.onSend(this.state.chatInput) from the child component).
-2) Next, we actually send the message. Through the magic of socket.io, this line of code will actually send the message to the server. So easy and simple, right!?
+2) Next, we actually send the message. Through the magic of socket.io, this line of code will send the message to the server. So easy and simple, right!?
 3) The current user is sending the message, so we want to add the ```fromMe``` flag so that our message is displayed correctly on the right in the messages view.
 4) We call the addMessage function to append our method to the state. 
 
@@ -337,9 +342,9 @@ Let's define the addMessage function now:
 
 This is a very simple function that takes the message object and appends it to the state.
 
-Now that the state is updated, the render method of ChatApp is automatically run again and the new message is passed into the Messages component to be displayed. Remember this line in the render method ``` <Messages messages={this.state.messages} />```.
+Now that the state is updated, the render method of ChatApp is automatically run, and the new message is passed into the Messages component. Remember this line in the render method ``` <Messages messages={this.state.messages} />```.
 
-The very last step is to define what happens when we receive a message from the server, we want to add it to the state as well, right?
+The very last step is to define what happens when we receive a message from the server; we want to add it to the state as well, right?
 Let's do that now. Add this to the bottom of the constructor inside ChatApp:
 
 ```
@@ -353,10 +358,10 @@ Let's do that now. Add this to the bottom of the constructor inside ChatApp:
   }
 ```
 
-Through the magic of socket.io, this callback will be run every time a message is received from another person in the chat room. When we recieve a message, all we need to do is add it to the state by calling the ```addMessage``` function that we defined earlier.
+Through the magic of socket.io, this callback will be run every time a message is received from another person in the chat room. When we receive a message, all we need to do is add it to the state by calling the ```addMessage``` function that we defined earlier.
 
 
 
 :tada: :tada: :tada: :tada:
 
-Congratulations, you have succesfully completed a React instant chat application. Happy chatting!
+Congratulations, you have successfully completed a React instant chat application. Happy chatting!
