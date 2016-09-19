@@ -23,7 +23,7 @@ P.s. We are hiring, feel free to get in touch with me at paul@kentandlime.com.au
 
 
 ##Getting started
-To get started, I recommend downloading the starter kit for this tutorial. It contains a skeleton version of the app so that you don't have to do any of the boring dev-ops stuff to get started. The starter kit also includes all of the stylesheets that we will be using for this tutorial. You can download the starter kit here: [react-instant-chat-starter-kit](https://github.com/kentandlime/react-instant-chat-starter-kit/).
+To get started, I recommend downloading the starter kit for this tutorial. It contains a skeleton version of the app so that you don't have to do any of the boring dev-ops stuff to get started. The starter kit also includes all of the stylesheets that we will be using for this tutorial. You can download the starter kit here: [react-instant-chat-tutorial](https://github.com/kentandlime/react-instant-chat-tutorial/).
 
 Once you have downloaded it, make sure to install the npm dependencies correctly by running: ``` npm install ```.
 Once that completes successfully, you can run ``` npm start ``` to start the server
