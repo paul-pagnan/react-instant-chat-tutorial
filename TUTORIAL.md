@@ -116,6 +116,7 @@ Your final App.js file should look like the one located [here](https://github.co
 
 ## 2. Main App Screen
 Now that we have allowed the user to enter the chat room, we want to display the main application. The main application consists of two main components, the user input section and the messages section.
+
 Again, let's start with the render method. 
 
 ```
@@ -140,6 +141,7 @@ We will deal with these things later. First, let's create the Messages and ChatI
 The message view will accept an array of message objects through the properties of the component. We pass the array in through the properties (as seen in the ChatApp render method) and access them inside the Messages component through ```this.props.messages```.
 
 Essentially, the purpose of the Messages component is to loop through each Message and create a single Message component. The Message component will display the actual message.
+
 So, the render method should be as follows:
 
 ```
@@ -172,10 +174,12 @@ Let's analyse what this method is doing. First start by getting the array of mes
 - 4) fromMe - a boolean that defines if the message was sent from the current user (we show different styles based on this i.e. right or left side of the screen)
 
 We store the result of this loop inside a local variable to keep our code clean. 
+
 Next, we wrap this variable in a div container and return it.
 
 
 Finally, the messages component should automatically scroll to the bottom when a new message is received. We can achieve this behaviour by using a React component lifecycle method called ```componentDidUpdate()```. As you probably guessed, this method is called when the props of the component changed. There are many different lifecycle methods available to us; you can find out more about these [here](https://facebook.github.io/react/docs/component-specs.html).
+
 To scroll the messages view we can use some simple javascript, as follows:
 ```
   componentDidUpdate() {
