@@ -14,6 +14,14 @@ The finished product looks like this:
 ![Finished react chat app](https://s17.postimg.org/40klqu39r/20160918_123011_capture.gif)
 
 
+##A bit about me
+My name is Paul Pagnan, and I am a Software Engineer at Kent and Lime. Kent and Lime is a Sydney-based, technology first startup looking to disrupt the way men shop online. We send you a box of professionally styled clothes to suit your specific size, style, and budget. You can check us out at [https://kentandlime.com.au](https://kentandlime.com.au).
+
+Our engineering team is always using cutting edge technologies to solve complex business problems. Our technology stack is predominantly ES6 Javascript. Javascript allows for extremely rapid development, which aligns with the cutting edge and fast paced nature of the business. This is likely the reason why javascript libraries, such as ReactJs, are gaining immense popularity not just in startups, but in larger organisations as well.
+
+P.s. We are hiring, feel free to get in touch with me at paul@kentandlime.com.au if you are interested
+
+
 ##Getting started
 To get started, I recommend downloading the starter kit for this tutorial. It contains a skeleton version of the app so that you don't have to do any of the boring dev-ops stuff to get started. The starter kit also includes all of the stylesheets that we will be using for this tutorial. You can download the starter kit here: [react-instant-chat-starter-kit](https://github.com/kentandlime/react-instant-chat-starter-kit/).
 
@@ -372,3 +380,4 @@ Your final ChatApp.js file should look like the one located [here](https://githu
 :tada: :tada: :tada: :tada:
 
 Congratulations, you have successfully completed a React instant chat application. Happy chatting!
+
