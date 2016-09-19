@@ -207,7 +207,7 @@ Now that we have created the Messages view to loop through all the messages, we 
   }
 ```
 
-Notice that we are using the ```fromMe`` property to conditionally add a CSS class to the container of the message.
+Notice that we are using the ```fromMe``` property to conditionally add a CSS class to the container of the message.
 
 ## 5. The Chat Input
 The chat input component is displayed underneath the message list, and allows the user to enter a message to be send to the server. The component is a simple form with a single text input field. When the user presses enter, the input box should clear and it should emit an event to the parent component. 
@@ -230,7 +230,47 @@ As always, let's start with the render method
 
 The render method here is simple. We create a form, and an input. When the form is submitted (by the user pressing enter inside the input box) the submitHandler is called. When we enter changes into the input box, the textChangeHandler is called and the value of this.state.chatInput is bound to the input box so that we can clear the input box after it is submitted. Let's look at these event handlers:
 
-1) 
+#### 1) Text change handler
+The text change handler should take the input from the text box and put it in the component state so that we can use it later when the user submits the form. The handler should look like this:
+```
+  textChangeHandler(event)  {
+    this.setState({ chatInput: event.target.value });
+  }
+```
 
+#### 2) Submit handler
+The submit handler should clear the current message from the input field and should emit an event back to the parent component with the typed message.
+```
+ submitHandler(event) {
+    // Stop the form from refreshing the page on submit
+    event.preventDefault();
+
+    // Call the onSend callback with the chatInput message
+    this.props.onSend(this.state.chatInput);
+    
+    // Clear the input box
+    this.setState({ chatInput: '' });
+  }
+```
+Let's analyse this method in detail.
+Firstly, ```event.preventDefault()``` prevents the native HTML form from refreshing the page when it is submitted. 
+Secondly, we emit an event to the parent component. You will notice that in the parent component (ChatApp.js) we pass in a property called ```onSend```. In this case, the onSend property is a function. The actual onSend function lives inside the parent component and we are passing a reference of that function to the child. The child is able to call this function reference and it will run whatever code is defined in the parent. Here we pass in the value of chatInput. This function does not exist currently, but we will create it in part 6.
+Lastly, once we have emitted the event to the parent, we can clear the user's input. We do this by simple setting the chatInput inside the state to '' (remember in the render method we bound ```this.state.chatInput``` to the ```value``` property of the ```<input />``` field, this allows us to update the value of the field simply by setting the state field that is bound to it).
+
+
+Lastly, we need to bind ```this``` to our event handlers as we did before. We should also set an initial state of chatInput so that it is not undefined when the component is loaded.
+```
+  constructor(props) {
+    super(props);
+    // Set initial state of the chatInput so that it is not undefined
+    this.state = { chatInput: '' };
+
+    // React ES6 does not bind 'this' to event handlers by default
+    this.submitHandler = this.submitHandler.bind(this);
+    this.textChangeHandler = this.textChangeHandler.bind(this);
+  }
+```
+
+Your final component should look like the one [here](https://github.com/kentandlime/react-instant-chat/blob/master/src/components/ChatInput.js)
 
 ## 6. Tying it all together
