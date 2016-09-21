@@ -19,7 +19,7 @@ My name is Paul Pagnan, and I am a Software Engineer at Kent and Lime. Kent and 
 
 Our engineering team is always using cutting edge technologies to solve complex business problems. Our technology stack is predominantly ES6 Javascript. Javascript allows for extremely rapid development, which aligns with the cutting edge and fast paced nature of the business. This is likely the reason why javascript libraries, such as ReactJs, are gaining immense popularity not just in startups, but in larger organisations as well.
 
-P.s. We are hiring, feel free to get in touch with me at paul@kentandlime.com.au if you are interested
+P.s. We are hiring, feel free to get in touch with me on LinkedIn if you are interested. My profile is [here](https://au.linkedin.com/in/paulpagnan)
 
 
 ##Getting started
