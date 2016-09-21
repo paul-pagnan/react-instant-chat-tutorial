@@ -177,7 +177,7 @@ render() {
 ```
 
 Let's analyse what this method is doing. First start by getting the array of messages from the properties, then we loop through it using the map function. Map is a new ES6 array function that you can read more about [here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map). For each message in the array, we create a Message component. The message component accepts three properties.
-- 1) key - the key is a React prop which tells the renderer the index of the current component in the loop. Remember that React's render engine only renders the changes by uses a diff system. Thus, the key property is a way for React to determine which component it needs to re-render based on which element in the array has changed.
+- 1) key - the key is a React prop which tells the renderer the index of the current component in the loop. Remember that React's render engine only renders the changes by using a diff system. Thus, the key property is a way for React to determine which component it needs to re-render based on which element in the array has changed.
 - 2) username - the name of the user who sent the message
 - 3) message - the actual body of the message
 - 4) fromMe - a boolean that defines if the message was sent from the current user (we show different styles based on this i.e. right or left side of the screen)
