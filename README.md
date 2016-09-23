@@ -15,7 +15,7 @@ Ensure that you also have the [simple-chat-api](https://github.com/kentandlime/s
 
 ## Tutorial
 Check out the tutorial on the CoderFactory blog here:
-[You Can Build an FB Messenger Style Chat App with ReactJs - Here's How! (Intermediate)](https://www.coderfactoryacademy.edu.au/posts/how-you-can-build-facebook-messenger-chat-app-with-reactjs
+[You Can Build an FB Messenger Style Chat App with ReactJs - Here's How!](https://www.coderfactoryacademy.edu.au/posts/how-you-can-build-facebook-messenger-chat-app-with-reactjs
 
 
 ![Finished react chat app](https://s17.postimg.org/40klqu39r/20160918_123011_capture.gif)
